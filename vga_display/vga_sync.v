@@ -28,9 +28,9 @@ parameter VERT_WHOLE = VERT_ACTIVE + VERT_FP + VERT_SYNCP + VERT_BP; //vertical 
 
 reg [15:0] h_counter;             //horizontal counter
 reg [15:0] v_counter;             //vertical counter
-wire h_active;                    //horizontal video active
-wire v_active;                    //vertical video active
-wire video_active;               //video active(horizontal active and vertical active)
+
+wire h_valid;                    //horizontal valid active zone 
+wire v_valid;                    //vertical valid active zone              
 
 always@(posedge clk or posedge rst)
 begin
@@ -61,9 +61,9 @@ end
 
 assign h_pulse = ((h_counter >= HORI_FP + HORI_SYNCP - 1) || (h_counter < HORI_FP - 1))? 1'b1:1'b0;
 assign v_pulse = ((v_counter >= VERT_FP + VERT_SYNCP - 1) || (v_counter < VERT_FP - 1))? 1'b1:1'b0;
-assign h_active = ((h_counter >= HORI_FP + HORI_SYNCP + HORI_BP - 1) && (h_counter < HORI_WHOLE - 1)) ? 1'b1:1'b0;
-assign v_active = ((v_counter >= VERT_FP + VERT_SYNCP + VERT_BP - 1) && (v_counter < VERT_WHOLE - 1)) ? 1'b1:1'b0;
-assign video_valid = h_active & v_active;
+assign h_valid = ((h_counter >= HORI_FP + HORI_SYNCP + HORI_BP - 1) && (h_counter < HORI_WHOLE - 1)) ? 1'b1:1'b0;
+assign v_valid = ((v_counter >= VERT_FP + VERT_SYNCP + VERT_BP - 1) && (v_counter < VERT_WHOLE - 1)) ? 1'b1:1'b0;
+assign video_valid = h_valid & v_valid;
 
 //get x/y positions
 always@(posedge clk or posedge rst)
