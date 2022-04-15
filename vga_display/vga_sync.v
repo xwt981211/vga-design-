@@ -5,21 +5,21 @@ module vga_sync(
 	output                h_pulse,        //horizontal synchronization pulse
 	output                v_pulse,        //vertical synchronization pulse
 	output                video_valid,    //video valid
-	output reg [11:0]         x_pos,     //x position
-    output reg [11:0]         y_pos      //Y position
+	output reg [11:0]     x_pos,     //x position
+    output reg [11:0]     y_pos      //Y position
 );
 
 //define vga mode related resolution parameters
 
-// 1024*768 65mhz
-parameter HORI_ACTIVE = 16'd1024;
-parameter HORI_FP = 16'd24;      
-parameter HORI_SYNCP = 16'd136;   
-parameter HORI_BP = 16'd160;     
-parameter VERT_ACTIVE = 16'd768; 
-parameter VERT_FP  = 16'd3;      
-parameter VERT_SYNCP  = 16'd6;    
-parameter VERT_BP  = 16'd29;     
+// 1024*768
+parameter HORI_ACTIVE = 12'd1024;
+parameter HORI_FP = 12'd24;      
+parameter HORI_SYNCP = 12'd136;   
+parameter HORI_BP = 12'd160;     
+parameter VERT_ACTIVE = 12'd768; 
+parameter VERT_FP  = 12'd3;      
+parameter VERT_SYNCP  = 12'd6;    
+parameter VERT_BP  = 12'd29;     
 parameter HS_POL = 1'b0;
 parameter VS_POL = 1'b0;
 
